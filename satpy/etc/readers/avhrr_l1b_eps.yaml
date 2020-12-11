@@ -3,7 +3,7 @@ reader:
     description: EPS Reader for AVHRR
     reader: !!python/name:satpy.readers.yaml_reader.FileYAMLReader
     sensors: [avhrr-3]
-    default_channels: [1, 2, 3a, 3b, 4, 5]
+    default_channels: [1, 2, 3a, 3b, 4, 5, cloud_flags]
 
 datasets:
     '1':
@@ -126,6 +126,13 @@ datasets:
         resolution: 1050
         coordinates: [longitude, latitude]
         file_type: avhrr_eps
+        
+    cloud_flags:
+        name: cloud_flags
+        sensor: avhrr-3
+        resolution: 1050
+        coordinates: [longitude, latitude]
+        file_type: avhrr_eps        
 
 file_types:
     avhrr_eps:

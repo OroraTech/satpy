@@ -154,6 +154,7 @@ class EPSAVHRRFile(BaseFileHandler):
         self.scanlines = None
         self.pixels = None
         self.sections = None
+        
 
     def _read_all(self):
         logger.debug("Reading %s", self.filename)
@@ -281,6 +282,7 @@ class EPSAVHRRFile(BaseFileHandler):
                           self["EARTH_LOCATION_FIRST"][-1, [1]]])
         return lons.ravel(), lats.ravel()
 
+
     def get_dataset(self, key, info):
         """Get calibrated channel data."""
         if self.sections is None:
@@ -304,6 +306,10 @@ class EPSAVHRRFile(BaseFileHandler):
                 dataset = create_xarray(sat_zen)
             elif key['name'] == 'satellite_azimuth_angle':
                 dataset = create_xarray(sat_azi)
+        elif key['name'] == "cloud_flags":
+            # print("******** HERE: Implement get dataset of clouds ***************")
+            array = self["CLOUD_INFORMATION"]
+            dataset = create_xarray(array)
         else:
             mask = None
             if key['calibration'] == 'counts':
