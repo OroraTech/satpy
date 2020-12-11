@@ -306,9 +306,11 @@ class EPSAVHRRFile(BaseFileHandler):
                 dataset = create_xarray(sat_zen)
             elif key['name'] == 'satellite_azimuth_angle':
                 dataset = create_xarray(sat_azi)
+        #### START: Added ####        
         elif key['name'] == "cloud_flags":
             array = self["CLOUD_INFORMATION"]
             dataset = create_xarray(array)
+        #### END: Added ####    
         else:
             mask = None
             if key['calibration'] == 'counts':
