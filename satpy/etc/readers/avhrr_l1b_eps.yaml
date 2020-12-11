@@ -3,7 +3,7 @@ reader:
     description: EPS Reader for AVHRR
     reader: !!python/name:satpy.readers.yaml_reader.FileYAMLReader
     sensors: [avhrr-3]
-    default_channels: [1, 2, 3a, 3b, 4, 5, cloud_flags]
+    default_channels: [1, 2, 3a, 3b, 4, 5]
 
 datasets:
     '1':
