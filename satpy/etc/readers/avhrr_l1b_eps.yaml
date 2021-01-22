@@ -126,8 +126,7 @@ datasets:
         resolution: 1050
         coordinates: [longitude, latitude]
         file_type: avhrr_eps
-
-    #### START: Added ####    
+ 
     cloud_flags:
         name: cloud_flags
         sensor: avhrr-3
@@ -135,13 +134,6 @@ datasets:
         coordinates: [longitude, latitude]
         file_type: avhrr_eps        
 
-    flags:
-        name: flags
-        sensor: avhrr-3
-        resolution: 1050
-        coordinates: [longitude, latitude]
-        file_type: avhrr_eps        
-    #### END: Added #### 
 
 file_types:
     avhrr_eps:
