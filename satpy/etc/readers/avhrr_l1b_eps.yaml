@@ -134,7 +134,15 @@ datasets:
         resolution: 1050
         coordinates: [longitude, latitude]
         file_type: avhrr_eps        
+
+    flags:
+        name: flags
+        sensor: avhrr-3
+        resolution: 1050
+        coordinates: [longitude, latitude]
+        file_type: avhrr_eps        
     #### END: Added #### 
+
 file_types:
     avhrr_eps:
         file_reader: !!python/name:satpy.readers.eps_l1b.EPSAVHRRFile
