@@ -109,8 +109,20 @@ def read_records(filename):
         for dtype, count, rec_class in zip(dtypes, counts, classes):
             fdes.seek(offset)
             if rec_class == ('mdr', 2):
-                record = da.from_array(np.memmap(fdes, mode='r', dtype=dtype, shape=count, offset=offset),
-                                       chunks=(max_lines,))
+                try:
+                    record = da.from_array(np.memmap(fdes, mode='r', dtype=dtype, shape=count, offset=offset), chunks=(max_lines,))
+                except:
+                    original_count = count
+                    logger.debug("*** Unconvetional image size!. Attempting to extract without memory mapping ***")
+                    while True:
+                        try:
+                            record = da.from_array(np.memmap(fdes, mode='r', dtype=dtype, shape=count-1, offset=offset), chunks=(max_lines,))
+                            break
+                        except:
+                            count=count-1
+                            if original_count - count > 10:
+                                break
+
             else:
                 record = np.fromfile(fdes, dtype=dtype, count=count)
             offset += dtype.itemsize * count
